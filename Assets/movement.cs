@@ -15,6 +15,7 @@ public class movement : NetworkBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        Debug.Log(rb);
         if (isLocalPlayer)
         {
             position = rb.position;
@@ -72,7 +73,7 @@ public class movement : NetworkBehaviour
 
     void changed(Vector3 old, Vector3 newPosition)
     {
-        if (!isLocalPlayer)
+        if (!isLocalPlayer && rb != null)
         {
             Debug.Log("Adjusting location");
             lerps = (int)Math.Ceiling(Vector3.Distance(newPosition, old) / 0.05f);
